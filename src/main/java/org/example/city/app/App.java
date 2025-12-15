@@ -10,6 +10,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+    /*
+        @Author Reem Abbas - 322732470
+        @Author Atheer Assad - 326448255
+     */
+
 public class App {
 
     public static void main(String[] args) {
@@ -30,11 +35,14 @@ public class App {
         while (true) {
             System.out.println("\n=== מערכת זיהום ערים ===");
             System.out.println("1) המדינה עם זיהום האוויר הגבוה ביותר (SQL)");
-            System.out.println("2) ערים בטווח זיהום מים (SQL)");
+            System.out.println("2) ספירת ערים בטווח זיהום מים (SQL)");
             System.out.println("3) המדינה עם זיהום מים הגבוה ביותר (ללא SQL)");
-            System.out.println("4) ספירת ערים בטווח זיהום אוויר (ללא SQL)");
+            System.out.println("4) ספירת ערים בטווח זיהום מים (ללא SQL)");
+            System.out.println("5) המדינה עם זיהום האוויר הגבוה ביותר (ללא SQL)");
+            System.out.println("6) המדינה עם זיהום המים הגבוה ביותר (SQL)");
             System.out.println("0) יציאה");
             System.out.print("בחר אפשרות: ");
+
 
             int ch = sc.nextInt();
 
@@ -60,7 +68,19 @@ public class App {
                     x = sc.nextDouble();
                     System.out.print("Y = ");
                     y = sc.nextDouble();
-                    QueriesNoSQL.countAirRange(data, x, y);
+                    QueriesNoSQL.citiesWaterPollutionRangeNoSQL(data, x, y);
+                    break;
+
+                case 5:
+                    QueriesNoSQL.highestAirNoSQL(data);
+                    break;
+
+                case 6:
+                    if (conn != null) {
+                        QueriesSQL.highestWaterSQL(conn);
+                    } else {
+                        System.out.println("אין חיבור לבסיס נתונים (SQL).");
+                    }
                     break;
 
                 case 0:

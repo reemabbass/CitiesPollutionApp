@@ -6,6 +6,24 @@ import java.util.ArrayList;
 
 public class QueriesNoSQL {
 
+    // מדינה עם זיהום אוויר הכי גבוה – ללא SQL
+    public static void highestAirNoSQL(ArrayList<CityRecord> list) {
+
+        double max = -1;
+        String country = "";
+
+        for (CityRecord c : list) {
+            if (c.getAirQuality() > max) {
+                max = c.getAirQuality();
+                country = c.getCountry();
+            }
+        }
+
+        System.out.println("ללא SQL – המדינה עם הזיהום הכי גבוה באוויר:");
+        System.out.println(country + " | " + max);
+    }
+
+
     // מדינה עם זיהום מים הכי גבוה – ללא SQL
     public static void highestWaterNoSQL(ArrayList<CityRecord> list) {
 
@@ -24,17 +42,20 @@ public class QueriesNoSQL {
     }
 
     // מספר ערים בטווח זיהום אוויר X-Y – ללא SQL
-    public static void countAirRange(ArrayList<CityRecord> list, double x, double y) {
-
+    public static void citiesWaterPollutionRangeNoSQL(ArrayList<CityRecord> list, double x, double y) {
         int count = 0;
+        System.out.println("ערים עם זיהום אוויר בין " + x + " ל-" + y + ":");
 
         for (CityRecord c : list) {
-            if (c.getAirQuality() >= x && c.getAirQuality() <= y) {
+            if (c.getWaterPollution() >= x && c.getWaterPollution() <= y) {
                 count++;
+                System.out.println(c.getCity() + " | " +
+                        c.getCountry() + " | " +
+                        c.getWaterPollution());
             }
         }
 
-        System.out.println("מספר הערים בטווח האוויר " + x + "-" + y + ": " + count);
+        System.out.println("מספר הערים עם זיהום מים הוא: " + count);
     }
 
 }
